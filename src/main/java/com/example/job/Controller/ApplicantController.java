@@ -11,6 +11,21 @@ import org.springframework.data.domain.PageRequest;
 @RestController
 @RequestMapping("/applicants")
 public class ApplicantController {
+    
+    @GetMapping("/firstName")
+    public Page<Applicant> findByFirstName(@RequestParam String firstName, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return applicantService.searchByFirstName(firstName, PageRequest.of(page, size));
+    }
+
+    @GetMapping("/lastName")
+    public Page<Applicant> findByLastName(@RequestParam String lastName, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return applicantService.searchByLastName(lastName, PageRequest.of(page, size));
+    }
+
+    @GetMapping("/email")
+    public Page<Applicant> findByEmail(@RequestParam String email, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return applicantService.searchByEmail(email, PageRequest.of(page, size));
+    }
 
     private final ApplicantService applicantService;
 
