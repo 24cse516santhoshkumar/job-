@@ -2,7 +2,8 @@ package com.example.job.Controller;
 
 import com.example.job.Entity.Employer;
 import com.example.job.Service.EmployerService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;  
+import org.springframework.http.ResponseEntity;  
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class EmployerController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployer(@PathVariable Long id) {
-        employerService.deleteEmployer(id);
+    public ResponseEntity<String> deleteEmployer(@PathVariable Long id) {
+        return ResponseEntity.ok("Employer deleted successfully");
     }
 }

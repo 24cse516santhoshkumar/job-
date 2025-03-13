@@ -4,7 +4,8 @@ import com.example.job.Entity.Application;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.example.job.Service.ApplicationService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;  
+import org.springframework.http.ResponseEntity;  
 
 import java.util.List;
 
@@ -47,7 +48,8 @@ public class ApplicationController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteApplication(@PathVariable Long id) {
+    public ResponseEntity<String> deleteApplication(@PathVariable Long id) {
         applicationService.deleteApplication(id);
+        return ResponseEntity.ok("Application deleted successfully");
     }
 }

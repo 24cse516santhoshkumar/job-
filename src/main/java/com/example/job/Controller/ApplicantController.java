@@ -4,9 +4,9 @@ import com.example.job.Entity.Applicant;
 import com.example.job.Service.ApplicantService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Sort;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/applicants")
@@ -54,7 +54,8 @@ public class ApplicantController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteApplicant(@PathVariable Long id) {
+    public ResponseEntity<String> deleteApplicant(@PathVariable Long id) {
         applicantService.deleteApplicant(id);
+        return ResponseEntity.ok("Applicant deleted successfully");
     }
 }

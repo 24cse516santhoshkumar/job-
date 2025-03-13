@@ -15,12 +15,12 @@ public interface JobListingRepository extends JpaRepository<JobListing, Long> {
     
     Page<JobListing> findByLocationContainingIgnoreCase(String location, Pageable pageable);
     
-    @Query("SELECT j FROM JobListing j WHERE j.salary >= :minSalary AND j.salary <= :maxSalary")
+    @Query("SELECT j FROM JobListing j WHERE j.salary >= :minSalary AND j.salary <= :maxSalary ORDER BY j.salary ASC")
     Page<JobListing> findBySalaryRange(@Param("minSalary") double minSalary, 
                                       @Param("maxSalary") double maxSalary, 
                                       Pageable pageable);
                                       
-    @Query("SELECT j FROM JobListing j WHERE j.jobType = :jobType ORDER BY j.postedDate DESC")
+    @Query("SELECT j FROM JobListing j WHERE j.jobType = :jobType ORDER BY j.postedDate DESC, j.salary ASC")
     Page<JobListing> findByJobTypeOrderByPostedDateDesc(@Param("jobType") String jobType, 
                                                       Pageable pageable);
 }
